@@ -4,25 +4,30 @@ import importlib
 import timeit
 import click
 
-def solve(year: int, day: int, input: str):
-  solution = importlib.import_module(f'aoc{year}.day{day:02d}.solution')
-  return solution.part1(input), solution.part2(input)
 
 def solve_and_report(year: int, day: int, input: str) -> None:
-    started_at = timeit.default_timer()
-    p1, p2 = solve(year, day, input)
-    print(f'{year}/{day:02d} solved in {timeit.default_timer() - started_at}sec\n  part1 -> {p1}\n  part2 -> {p2}')
+    solution = importlib.import_module(f'aoc{year}.day{day:02d}.solution')
+    started_p1 = timeit.default_timer()
+    p1 = solution.part1(input)
+    started_p2 = timeit.default_timer()
+    p2 = solution.part2(input)
+
+    print(f'{year}/{day:02d}\n\n  part1 -> {p1}\n{started_p2 - started_p1}\n\n  part2 -> {p2}\n{timeit.default_timer() - started_p2}')
+
 
 def default_input_path(year: int, day: int):
-  return os.path.join(os.getcwd(), 'aoc', f'aoc{year}', f'day{day:02d}', 'input.txt')
+    return os.path.join(os.getcwd(), 'aoc', f'aoc{year}', f'day{day:02d}', 'input.txt')
+
 
 def read_input(path) -> str:
     with open(path, 'r') as input_file:
-      input = input_file.read().rstrip()
+        input = input_file.read().rstrip()
     return input
 
+
 def solve_and_report_by_file_path(path):
-  print(path)
+    print(path)
+
 
 @click.command()
 @click.option('-y', '--year', type=int)
@@ -33,8 +38,10 @@ def main(year, day, stdin, input_path):
     year = int(year) if year else 2021
     day = int(day)
 
-    input = sys.stdin.read().rstrip() if stdin else read_input(input_path or default_input_path(year, day))
+    input = sys.stdin.read().rstrip() if stdin else read_input(
+        input_path or default_input_path(year, day))
     solve_and_report(year, day, input)
+
 
 if __name__ == "__main__":
     main()
