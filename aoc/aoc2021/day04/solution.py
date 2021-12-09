@@ -70,6 +70,6 @@ def _parse_input(input: str) -> tuple[list[int], list[Board]]:
     nums, *boards = input.split('\n\n')
     nums = [int(num) for num in nums.split(",")]
     boards = list(map(lambda board: Board([int(num)
-                                           for num in re.split("\D+", board.strip())]), boards))
+                                           for num in re.split(r'\D+', board.strip())]), boards))
 
     return nums, boards
