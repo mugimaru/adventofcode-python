@@ -1,4 +1,4 @@
-from aoc2021.day05 import solution
+from aoc.aoc2021.day05 import solution
 
 TEST_INPUT = """0,9 -> 5,9
 8,0 -> 0,8

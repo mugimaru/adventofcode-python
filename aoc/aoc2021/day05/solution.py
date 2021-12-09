@@ -32,10 +32,3 @@ def _parse_input(input: str) -> list[tuple[tuple[int, int], tuple[int, int]]]:
     return list(map(lambda line:
                     tuple(map(lambda coord:
                               tuple(map(lambda v: int(v), coord.split(','))), line.split(' -> '))), input.split('\n')))
-
-
-if __name__ == "__main__":
-    with open((__file__.rstrip("solution.py")+"input.txt"), 'r') as input_file:
-        input = input_file.read()
-
-    print(f'Part 1: {str(part1(input))}\nPart 2: {str(part2(input))}')

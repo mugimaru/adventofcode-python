@@ -25,10 +25,4 @@ def part2(input):
     return counter
 
 def _parse_input(input):
-    return list(map(lambda line: int(line), input))
-
-if __name__ == "__main__":
-    with open((__file__.rstrip("solution.py")+"input.txt"), 'r') as input_file:
-        input = [int(line) for line in input_file.read().splitlines()]
-
-    print(f'Part 1: {str(part1(input))}\nPart 2: {str(part2(input))}')
+    return list(map(lambda line: int(line), input.splitlines()))

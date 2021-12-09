@@ -40,15 +40,8 @@ def part2(input):
 def _parse_input(input):
   parsed = []
 
-  for line in input:
+  for line in input.splitlines():
     cmd, value = line.split(" ")
     parsed.append((cmd, int(value)))
 
   return parsed
-
-if __name__ == "__main__":
-    with open((__file__.rstrip("solution.py")+"input.txt"), 'r') as input_file:
-        input = [line for line in input_file.read().splitlines()]
-
-
-    print(f'Part 1: {str(part1(input))}\nPart 2: {str(part2(input))}')

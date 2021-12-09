@@ -1,12 +1,8 @@
-from collections import defaultdict
-
-
 def part1(input: str, days=80) -> int:
     return sum(_simulate(_parse_input(input), days))
 
 def part2(input: str) -> int:
     return part1(input, days=256)
-
 
 def _simulate(input: list[int], days: int) -> list[int]:
   next_gen = input[1:]
@@ -24,10 +20,3 @@ def _parse_input(input: str) -> list[int]:
     acc[int(item)] += 1
 
   return acc
-
-
-if __name__ == "__main__":
-    with open((__file__.rstrip("solution.py")+"input.txt"), 'r') as input_file:
-        input = input_file.read()
-
-    print(f'Part 1: {str(part1(input))}\nPart 2: {str(part2(input))}')

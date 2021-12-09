@@ -73,10 +73,3 @@ def _parse_input(input: str) -> tuple[list[int], list[Board]]:
                                            for num in re.split("\D+", board.strip())]), boards))
 
     return nums, boards
-
-
-if __name__ == "__main__":
-    with open((__file__.rstrip("solution.py")+"input.txt"), 'r') as input_file:
-        input = input_file.read()
-
-    print(f'Part 1: {str(part1(input))}\nPart 2: {str(part2(input))}')

@@ -1,4 +1,4 @@
-from aoc2021.day06 import solution
+from aoc.aoc2021.day06 import solution
 
 TEST_INPUT = "3,4,3,1,2"
 
