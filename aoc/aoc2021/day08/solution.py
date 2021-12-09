@@ -1,18 +1,20 @@
 from collections import defaultdict
-
+from itertools import permutations
 
 DIGITS = {
-    "0": list("abcefg"),
-    "1": list("cf"),
-    "2": list("acdeg"),
-    "3": list("acdfg"),
-    "4": list("bcdf"),
-    "5": list("abdfg"),
-    "6": list("abdefg"),
-    "7": list("acf"),
-    "8": list("abcdefg"),
-    "9": list("abcdfg"),
+    "abcefg": 0,
+    "cf": 1,
+    "acdeg": 2,
+    "acdfg": 3,
+    "bcdf": 4,
+    "abdfg": 5,
+    "abdefg": 6,
+    "acf": 7,
+    "abcdefg": 8,
+    "abcdfg": 9,
 }
+
+ALL_SEGMENTS = "abcdefg"
 
 
 def part1(input: str) -> int:
@@ -20,8 +22,26 @@ def part1(input: str) -> int:
 
 
 def part2(input: str) -> int:
-    possibilities = defaultdict(DIGITS["8"])
-    pass
+    def translate(trans_map, pattern):
+        translated = []
+        for i in range(len(pattern)):
+            translated.append(trans_map[pattern[i]])
+        return sorted(translated)
+
+    total_output = 0
+    for (signals, outputs) in _parse_input(input):
+        for permutation in permutations(ALL_SEGMENTS):
+            trans_map = {}
+            for i in range(len(permutation)):
+                trans_map[permutation[i]] = ALL_SEGMENTS[i]
+
+            translated_signals = [translate(trans_map, pattern) for pattern in signals]
+            translated_outputs = [translate(trans_map, pattern) for pattern in outputs]
+            if all("".join(pattern) in DIGITS for pattern in translated_signals):
+                total_output += int("".join(str(DIGITS["".join(pattern)]) for pattern in translated_outputs))
+                break
+
+    return total_output
 
 
 def _parse_input(input: str) -> list[int]:
