@@ -4,11 +4,12 @@ def part1(input):
     counter = 0
 
     for v in input:
-        if current != None and v > current:
+        if current is not None and v > current:
             counter += 1
         current = v
 
     return counter
+
 
 def part2(input):
     input = _parse_input(input)
@@ -23,6 +24,7 @@ def part2(input):
         i += 1
 
     return counter
+
 
 def _parse_input(input):
     return list(map(lambda line: int(line), input.splitlines()))

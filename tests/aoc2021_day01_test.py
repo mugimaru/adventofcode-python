@@ -11,8 +11,10 @@ TEST_INPUT = """199
 260
 263"""
 
+
 def test_part1():
     assert solution.part1(TEST_INPUT) == 7
+
 
 def test_part2():
     assert solution.part2(TEST_INPUT) == 5

@@ -11,8 +11,10 @@ TEST_INPUT = """0,9 -> 5,9
 0,0 -> 8,8
 5,5 -> 8,2"""
 
+
 def test_part1():
     assert solution.part1(TEST_INPUT) == 5
+
 
 def test_part2():
     assert solution.part2(TEST_INPUT) == 12

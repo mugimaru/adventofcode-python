@@ -9,9 +9,12 @@ def part2(input: str) -> int:
 def _solve(input: str, distance_fun) -> int:
     input = _parse_input(input)
     return min(
-        map(lambda c1: sum(
-            map(lambda c2: distance_fun(min(c1, c2), max(c1, c2)), input)), range(min(input), max(input) + 1)))
+        map(
+            lambda c1: sum(map(lambda c2: distance_fun(min(c1, c2), max(c1, c2)), input)),
+            range(min(input), max(input) + 1),
+        )
+    )
 
 
 def _parse_input(input: str) -> list[int]:
-    return [int(num) for num in input.split(',')]
+    return [int(num) for num in input.split(",")]

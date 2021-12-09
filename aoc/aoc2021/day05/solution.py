@@ -8,6 +8,7 @@ def part1(input: str) -> int:
 def part2(input: str) -> None:
     return _calculate_intersections(_parse_input(input), with_diagonal_lines=True)
 
+
 def _calculate_intersections(input: list[tuple[tuple[int, int], tuple[int, int]]], with_diagonal_lines=False) -> int:
     acc = defaultdict(int)
 
@@ -23,12 +24,21 @@ def _calculate_intersections(input: list[tuple[tuple[int, int], tuple[int, int]]
 
     intersections = 0
     for _, count in acc.items():
-        if count > 1: intersections += 1
+        if count > 1:
+            intersections += 1
 
     return intersections
 
 
 def _parse_input(input: str) -> list[tuple[tuple[int, int], tuple[int, int]]]:
-    return list(map(lambda line:
-                    tuple(map(lambda coord:
-                              tuple(map(lambda v: int(v), coord.split(','))), line.split(' -> '))), input.split('\n')))
+    return list(
+        map(
+            lambda line: tuple(
+                map(
+                    lambda coord: tuple(map(lambda v: int(v), coord.split(","))),
+                    line.split(" -> "),
+                )
+            ),
+            input.split("\n"),
+        )
+    )

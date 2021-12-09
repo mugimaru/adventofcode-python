@@ -13,9 +13,10 @@ TEST_INPUT = """00100
 00010
 01010"""
 
+
 def test_part1():
     assert solution.part1(TEST_INPUT) == 198
 
+
 def test_part2():
     assert solution.part2(TEST_INPUT) == 230
-

@@ -21,8 +21,10 @@ TEST_INPUT = """7,4,9,5,11,17,23,2,0,14,21,24,10,16,13,6,15,25,12,22,18,20,8,19,
  2  0 12  3  7
 """
 
+
 def test_part1():
     assert solution.part1(TEST_INPUT) == 4512
+
 
 def test_part2():
     assert solution.part2(TEST_INPUT) == 1924

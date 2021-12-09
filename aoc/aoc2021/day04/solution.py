@@ -2,8 +2,7 @@ import math
 import re
 
 
-class Board():
-
+class Board:
     def __init__(self, numbers: list[int]) -> None:
         self.numbers = {}
         self.size = int(math.sqrt(len(numbers)))
@@ -15,7 +14,7 @@ class Board():
             self.numbers[num] = (i // self.size, i % self.size)
 
     def mark_number(self, num: int) -> bool:
-        if not num in self.numbers:
+        if num not in self.numbers:
             return False
 
         (row, col) = self.numbers[num]
@@ -28,7 +27,7 @@ class Board():
     def score(self, num: int) -> int:
         sum = 0
         for item in self.numbers:
-            if not item in self.marked:
+            if item not in self.marked:
                 sum += item
 
         return sum * num
@@ -67,9 +66,13 @@ def _find_loosers_score(nums, boards, winners) -> int:
 
 
 def _parse_input(input: str) -> tuple[list[int], list[Board]]:
-    nums, *boards = input.split('\n\n')
+    nums, *boards = input.split("\n\n")
     nums = [int(num) for num in nums.split(",")]
-    boards = list(map(lambda board: Board([int(num)
-                                           for num in re.split(r'\D+', board.strip())]), boards))
+    boards = list(
+        map(
+            lambda board: Board([int(num) for num in re.split(r"\D+", board.strip())]),
+            boards,
+        )
+    )
 
     return nums, boards
