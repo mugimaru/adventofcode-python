@@ -1,5 +1,7 @@
 # [Advent Of Code](https://adventofcode.com) solutions in Python
 
+<!--- advent_readme_stars table 2021 --->
+
 ## Setup
 
 ```
