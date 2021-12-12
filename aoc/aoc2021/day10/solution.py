@@ -28,7 +28,7 @@ def part2(input: str) -> int:
     return scores[len(scores) // 2]
 
 
-def is_corrupted(line) -> 'tuple[bool, int, list[str]]':
+def is_corrupted(line) -> "tuple[bool, int, list[str]]":
     stack = []
     for char in line:
         if char not in cto.keys():
