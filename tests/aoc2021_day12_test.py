@@ -1,24 +1,14 @@
 from aoc.aoc2021.day12 import solution
 
-
-def test_part1():
-
-    assert (
-        solution.part1(
-            """start-A
+TI_1 = """start-A
 start-b
 A-c
 A-b
 b-d
 A-end
 b-end"""
-        )
-        == 10
-    )
 
-    assert (
-        solution.part1(
-            """dc-end
+TI_2 = """dc-end
 HN-start
 start-kj
 dc-start
@@ -28,13 +18,8 @@ HN-end
 kj-sa
 kj-HN
 kj-dc"""
-        )
-        == 19
-    )
 
-    assert (
-        solution.part1(
-            """fs-end
+TI_3 = """fs-end
 he-DX
 fs-he
 start-DX
@@ -52,10 +37,15 @@ he-WI
 zg-he
 pj-fs
 start-RW"""
-        )
-        == 226
-    )
+
+
+def test_part1():
+    assert solution.part1(TI_1) == 10
+    assert solution.part1(TI_2) == 19
+    assert solution.part1(TI_3) == 226
 
 
 def test_part2():
-    pass
+    assert solution.part2(TI_1) == 36
+    assert solution.part2(TI_2) == 103
+    assert solution.part2(TI_3) == 3509

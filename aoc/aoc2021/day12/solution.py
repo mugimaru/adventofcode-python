@@ -23,7 +23,32 @@ def find_paths(start, routes, path):
 
 
 def part2(input: str) -> int:
-    pass
+    routes = parse_input(input)
+    paths = find_paths_p2("start", routes, [], None)
+    return len(paths)
+
+
+def find_paths_p2(start, routes, path, sc_visited_twice):
+    path = list(path)
+    path.append(start)
+    paths = set([])
+    for p in routes[start]:
+        next_scvt = bool(sc_visited_twice)
+        if p.upper() != p and p in path:
+            if sc_visited_twice:
+                continue
+            else:
+                next_scvt = True
+
+        if p == "end":
+            paths.add(",".join(path))
+            continue
+        if p == "start":
+            continue
+
+        paths = paths.union(find_paths_p2(p, routes, path, next_scvt))
+
+    return paths
 
 
 def parse_input(input: str) -> "dict[str, list[str]]":
