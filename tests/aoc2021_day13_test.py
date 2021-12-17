@@ -24,4 +24,4 @@ fold along x=5"""
 
 
 def test_part1():
-    assert solution.part1(TEST_INPUT) == 42
+    assert solution.part1(TEST_INPUT) == 17
