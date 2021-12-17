@@ -3,44 +3,16 @@ from functools import reduce
 
 
 def part1(input: str) -> int:
-    return solve_v2(input, 10)
+    return solve(input, 10)
 
 
 def part2(input: str) -> int:
-    return solve_v2(input, 40)
+    return solve(input, 40)
 
 
 def solve(input, steps):
-    template, insertions = parse_input(input)
-    for _ in range(steps):
-        template = iterate(template, insertions)
-
-    stats = defaultdict(int)
-    for char in template:
-        stats[char] += 1
-
-    mc = max(stats, key=stats.get)
-    lc = min(stats, key=stats.get)
-
-    return stats[mc] - stats[lc]
-
-
-def iterate(template: str, insertions: "dict[str, str]") -> str:
-    new_template = template[0]
-    for i in range(len(template) - 1):
-        seq = template[i : i + 2]
-        ins = insertions.get(seq)
-        if ins is not None:
-            new_template += ins + template[i + 1]
-        else:
-            template[i + 1]
-
-    return new_template
-
-
-def solve_v2(input, steps):
     template, insertions, last_letter = parse_input(input)
-    template = reduce(lambda template, _: iterate_v2(template, insertions), range(steps), template)
+    template = reduce(lambda template, _: iterate(template, insertions), range(steps), template)
     return score(template, last_letter)
 
 
@@ -55,7 +27,7 @@ def score(template, last_letter):
     return stats[mc] - stats[lc]
 
 
-def iterate_v2(template: "dict[str, int]", insertions: "dict[str, list[str]]") -> str:
+def iterate(template: "dict[str, int]", insertions: "dict[str, list[str]]") -> str:
     new_template = dict()
     for pair, cnt in template.items():
         for p in insertions.get(pair, []):
