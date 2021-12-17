@@ -22,3 +22,7 @@ CN -> C"""
 
 def test_part1():
     assert solution.part1(TEST_INPUT) == 1588
+
+
+def test_part2():
+    assert solution.part2(TEST_INPUT) == 2188189693529
