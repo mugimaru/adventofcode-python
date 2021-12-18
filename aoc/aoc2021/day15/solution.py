@@ -4,7 +4,23 @@ def part1(input: str) -> int:
 
 
 def part2(input: str) -> int:
-    pass
+    grid, exit = scale(*parse_input(input))
+    return find_best_path(grid, exit)
+
+
+def scale(grid, exit):
+    new_grid = grid.copy()
+
+    for (x, y), risk in grid.items():
+        for i in range(5):
+            for j in range(5):
+                new_point = (x + i * (exit[0] + 1), y + j * (exit[1] + 1))
+                new_risk = (risk + i + j) % 9
+                new_risk = 9 if new_risk == 0 else new_risk
+                new_grid[new_point] = new_risk
+
+    new_exit = ((exit[0] + 1) * 5 - 1, (exit[1] + 1) * 5 - 1)
+    return new_grid, new_exit
 
 
 def find_best_path(grid: "dict[tuple[int, int], int]", exit: "tuple[int, int]") -> int:

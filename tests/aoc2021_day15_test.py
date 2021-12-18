@@ -17,4 +17,4 @@ def test_part1():
 
 
 def test_part2():
-    pass
+    assert solution.part2(TEST_INPUT) == 315
